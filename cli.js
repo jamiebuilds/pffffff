@@ -16,8 +16,15 @@ let cli = meow({
   `
 });
 
+let message = cli.input[0];
+
+if (!message) {
+  cli.showHelp();
+  process.exit(1);
+}
+
 let cmd = path.basename(process.argv[1]);
 let ffs = cmd.match(/f/g);
 let multiplier = ffs ? ffs.length : 2;
 
-console.log(pffffff(cli.input[0], multiplier));
+console.log(pffffff(message, multiplier));
